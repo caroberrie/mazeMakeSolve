@@ -1,0 +1,4 @@
+This project was made for a class in college
+Essentially what it does it creates a random maze with a dimension of the input parameters 
+Then will take the maze and solve how to to the end
+There is an example of the finished maze as maze.ps this was a 50 50 maze
