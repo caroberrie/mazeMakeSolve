@@ -1,0 +1,196 @@
+#include "project4.h"
+#include "exceptions.h"
+#include "pathfinder.h"
+#include "output.cpp"
+#include <stack.h>
+
+//#include <cstdlib>
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+
+//void GenerateMaze(int,int);
+//void wallRemove();
+
+int d[4] = {0,1,2,3};
+
+
+/*int SampleNoReplacement(int items,int n){
+	int rand(void);
+	int i = 0;
+	int e;
+
+	i = rand % n;
+	e = items[i];
+	n = n - 1;
+
+	items[i] = items[n];
+
+	return e;
+}
+
+void DisjointSetUnion(int elements, int rank, int a, int b){
+	a = ds.find(a);
+	b = ds.find(b);
+
+	if (a != b){
+	  if (rank[a] < rank[b])
+	       elements[a] = b;
+	  else
+	     if (rank[a] = rank[b])
+	       rank[a] = rank[a] + 1;
+	  
+	  elements[b] = a;
+
+}
+
+}
+
+int DisjointSetFind(int elements, int rank, int a){
+	if (elements[a] != a)
+	   elements[a] = ds.find(elements[a]);
+
+	return elements[a];
+}
+*/
+
+void GenerateMaze(int nR, int nC){
+	int i = 0;
+	uint8_t Map[nR][50]; //initialize array	
+
+	for (int r = 0; r < nR - 1; r++){
+	 for (int c = 0; c < nC - 1; c++)
+		Map[r][c] = 15;
+	}
+
+	DisjointSet ds(nR*nC);
+	Sampler sam(nR*(nC-1)+nC*(nR-1));
+	
+	i = 1;
+
+	//decodeCell();
+
+
+	 
+while(i < nR * nC - 1){ //wall remover
+	int wall,r,c,r2,c2;
+	
+	wall = sam.getSample();
+
+	if (wall < nR * (nC-1)){  // this for right wall
+			 // find out what cell it is
+	r = wall%nR;
+	c = wall/nR;
+
+	//cell to the right of it
+	r2 = r;
+	c2 = c + 1;
+
+	if(ds.find(r*nC+c) != ds.find(r2*nC+c2)){
+	Map[r][c] &= ~WALL_RIGHT; // constant in a header given to us
+
+	Map[r2][c2] &= ~WALL_LEFT;
+
+	ds.join(r*nC+c, r2*nC+c2);
+
+	i++;
+	}
+	else{
+	wall = wall - nR*(nC-1);
+	//down row
+	r = wall/nC;
+	c = wall%nC;
+
+	r2 = r+1;
+	c2 = c2;
+
+	if(ds.find(r*nC+c) != ds.find(r2*nC+c2)){
+	Map[r][c] &= ~WALL_DOWN;
+	Map[r2][c2] &= ~WALL_UP;
+
+	ds.join(r*nC+c, r2*nC+c2);
+	i++;
+	}
+}
+
+}
+
+
+printMaze(Map,nR,nC);
+}
+
+
+// Find path
+	Stack<int> s;
+
+	//d + 5(c + n * r)
+	int d = 0;
+	s.push(d + 5*(0+nC*0));
+	//mark 0 0 as visited
+	Map[0][0] &= ~VISITED;
+	int c,r,cprime,rprime;
+	
+
+	while(true){
+		//decode
+		c = 0;
+		r = 0;
+		d = 0;
+
+		while (d >= 0) {
+
+		if(r = nR - 1 && c = nC - 1)
+			break;
+
+
+
+		if(d = 4){
+
+			Map[r][c] &= ~DEAD_END;
+			s.pop();
+
+			}
+		
+		else{
+		rprime = r+1;
+		cprime = c;
+		//replace encodes
+
+		//if (condition)	{
+		//s.push(encode function)
+		//Map[rprime][cprime] &= ~VISITED;
+		//}	
+
+		//
+			}
+		//end while
+
+	}
+}
+
+}
+
+//int main(int argc, char argv[]){
+int main(int argc, char *argv[]){
+int nR, nC;
+int i = 0;
+
+nR = atol(argv[i]); // initialize nR
+nC = atoi(argv[i]); 
+
+
+int numWalls = (nC -1)*nR + nC*(nR - 1);
+
+GenerateMaze(nR, nC); // void to generate maze
+
+return 0;
+}
+
+
+
+
+
+
+
+

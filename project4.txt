@@ -1,0 +1,143 @@
+first class:
+
+private part of sampler class:
+int
+int pointer
+
+public 3 methods:
+construct{
+
+int pointer
+size of the array
+store count in the object
+
+}
+destructor( deletes array )
+
+get sampler algorithm
+-pick position at random
+-cover with last item in array
+
+
+
+//////////////////////////////
+second class:
+
+
+disjoint set object 
+one int
+two int pointers
+
+constructor(int n)
+(
+two arrays
+elements[i]= 0
+ranks[i] = 0
+
+)
+destructor(deletes arrays)
+)
+find(int a)
+-follow algorithms
+
+join(int a, int b)
+-follow algorithms
+
+/////////////////////////////
+after class creation:
+
+select walls randomly and remove them
+
+only remove wall
+if it does not create a loop in the maze
+
+sampler needs to hold all of the interior walls(removed)
+
+disjoint object needs to hold all of the cells
+
+	cells = numrows * numcolumns
+
+	number of walls = (numcolumns - 1)numrows + numcols(numrows - 1)
+
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 (all rank 0)
+
+create one sampler object with this many walls
+	counter = numrows*numcolumns
+	loop till counter reaches one
+
+after it reaches loop
+pick a wall any wall (9) example
+
+if greater or less than (numcols-1)(numrows)?					(if wall is 9)	w=9, r=1, c=2, r2=1, c2=3, a=6, b=7 (use algorithms listed)
+that one is vertical
+else its horizontal
+										(if wall is 14)	w=14, r=2, c=0(floor)(divides cause floor), r2=3, c2=0,a=8, b=12 
+4 sides of the wall we use as values
+
+rColumn location? right column turn off the wall (turn off a bit)		(if wall is 23) w=23, r=2, c=3, r2=3, c2=3, a=11, b=15
+
+then do a Union of A and B, listed under					(if wall is 10) w=10, r=2, c=2, r2=2, c2=3, a=10, a=11
+
+(if wall is 9)									(if wall is 5) w=5, r=1, c=1, r2=1, c2=2, a=5, b=6
+
+represents one side of the wall							(if wall is 22) w=22, r=1, c=3, r2=2, c2=3, a=7, b=11
+	a=r*nColumns+column
+										(if wall is 19) w=19, r=1, c=2, r2=2, c2=2, a=6, b=10
+represents other side of the wall
+	b=r2*ncolumns+column2
+
+vertical edge(less than numcols-1 * numrows)
+	row = n%numRows
+	c = n/nr
+	row2 = stays same
+	col2 = c+1
+
+horizontal edge (greater than or equal to numcols-1 * numrows)
+	r = (n-(ncol-1)nrows)%(nrows-1)
+	c =(n-(ncol-1)nrows)/(nrows-1)
+	r2 = r+1
+	c2 = c
+
+disjointset find(){
+(loop) 
+walk up the array to find the top
+then increase the rank
+if they are the same do not remove the edge of that wall
+
+}
+
+if A and B are different, remove that wall
+
+
+
+create one disjoint object with this many cells
+	counter = numrows*numcolumns
+	loop till counter reaches one
+
+///////////////////////
+every region becomes a tree
+
+/////////////////////
+
+ARGC = ARGUMENT COUNT
+ARGV = ARGUMENT VALUE
+
+int main(int argc, char argv[])
+{
+	numRows = atoI(argv[1]);
+	numCols = atoI(argv[2]);
+	numWalls= above;
+	Sampler sam(numWalls);
+	DisjointSet ds(numRows * numCols);
+
+}
+
+
+}
+
+
+
+
+
+
+
