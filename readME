@@ -3,4 +3,4 @@ Essentially what it does it creates a random maze with a dimension of the input 
 Then will take the maze and solve how to to the end
 There is an example of the finished maze as maze.ps this was a 50 50 maze
 I am not sure how well this will play on windows if it will at all.
-
+Was working of 2.25.21 when i tested on my personal ubuntu machine
